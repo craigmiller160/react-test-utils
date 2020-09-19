@@ -21,7 +21,7 @@
     "outDir": "./lib"
   },
   "include": [
-    "./src/*"
+    "./src/**/*"
   ],
   "exclude": [
     "node_modules",
