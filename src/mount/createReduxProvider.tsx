@@ -1,18 +1,16 @@
 import React, { ElementType, PropsWithChildren } from 'react';
-import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-// TODO make generic
-const createReduxProvider = (storeState: object, useThunk: boolean): [ElementType<PropsWithChildren<void>>, MockStoreEnhanced<object,{}>] => {
+const createReduxProvider = <T extends object>(storeState: T, useThunk: boolean): [ElementType<PropsWithChildren<void>>, MockStoreEnhanced<T,{}>] => {
     let middleware = [];
     if (useThunk) {
         middleware.push(thunk);
     }
 
-    const mockStore = configureMockStore<object,{}>(middleware);
-    const store: MockStoreEnhanced<object,{}> = mockStore(storeState);
+    const mockStore = configureMockStore<T,{}>(middleware);
+    const store: MockStoreEnhanced<T,{}> = mockStore(storeState);
 
     const ReduxProvider = (props: PropsWithChildren<void>) => (
         <Provider store={ store }>
