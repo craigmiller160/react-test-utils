@@ -1,8 +1,8 @@
 import React, { Context, ElementType, PropsWithChildren } from 'react';
 
 // TODO lower case contextType
-const createContext = <T extends object>(ContextType: Context<T>, contextValue: T): ElementType<PropsWithChildren<void>> => {
-    const TestContext = (props: PropsWithChildren<void>) => (
+const createContextProvider = <T extends object>(ContextType: Context<T>, contextValue: T): ElementType<PropsWithChildren<{}>> => {
+    const TestContext = (props: PropsWithChildren<{}>) => (
         <ContextType.Provider value={ contextValue }>
             { props.children }
         </ContextType.Provider>
@@ -11,4 +11,4 @@ const createContext = <T extends object>(ContextType: Context<T>, contextValue: 
     return TestContext;
 };
 
-export default createContext;
+export default createContextProvider;

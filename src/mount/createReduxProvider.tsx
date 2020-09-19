@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import configureMockStore, { MockStoreEnhanced } from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-const createReduxProvider = <T extends object>(storeState: T, useThunk: boolean): [ElementType<PropsWithChildren<void>>, MockStoreEnhanced<T,{}>] => {
+const createReduxProvider = <T extends object>(storeState: T, useThunk: boolean): [ElementType<PropsWithChildren<{}>>, MockStoreEnhanced<T,{}>] => {
     let middleware = [];
     if (useThunk) {
         middleware.push(thunk);
@@ -12,7 +12,7 @@ const createReduxProvider = <T extends object>(storeState: T, useThunk: boolean)
     const mockStore = configureMockStore<T,{}>(middleware);
     const store: MockStoreEnhanced<T,{}> = mockStore(storeState);
 
-    const ReduxProvider = (props: PropsWithChildren<void>) => (
+    const ReduxProvider = (props: PropsWithChildren<{}>) => (
         <Provider store={ store }>
             { props.children }
         </Provider>
