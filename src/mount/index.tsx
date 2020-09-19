@@ -26,7 +26,7 @@ interface InnerArgs<Props extends object, StoreState extends object, ContextValu
 // TODO make Component have lower-case C
 
 // defaultProps and defaultStoreState can have individual properties overridden, defaultInitialRouteEntries gets overridden in its entirety
-const creator = <Props extends object, StoreState extends object, ContextValue extends object>(Component: ElementType<Props>, outerArgs?: OuterArgs<Props,StoreState,ContextValue>) => {
+const creator = <Props extends object, StoreState extends object, ContextValue extends object>(component: ElementType<Props>, outerArgs?: OuterArgs<Props,StoreState,ContextValue>) => {
     return (innerArgs?: InnerArgs<Props,StoreState,ContextValue>) => {
         const actualProps: Partial<Props> = { // TODO is this the right type?
             ...(outerArgs?.defaultProps ?? {}),
@@ -62,18 +62,21 @@ const creator = <Props extends object, StoreState extends object, ContextValue e
             TestContextWrapper = createContextProvider<Partial<ContextValue>>(outerArgs.contextType as unknown as Context<Partial<ContextValue>>, actualContextValue); // TODO fix this
         }
 
-        const component = mount(
+        const Component: ElementType<Partial<Props>> = component as unknown as ElementType<Partial<Props>>; // TODO fix this
+
+        // TODO fix component part
+        const mountedComponent = mount(
             <TestProviderWrapper>
                 <TestRouterWrapper>
                     <TestContextWrapper>
-                        <Component { ...actualProps } />
+                        {/*<Component { ...actualProps } />*/}
                     </TestContextWrapper>
                 </TestRouterWrapper>
             </TestProviderWrapper>
         );
 
         return {
-            component,
+            component: mountedComponent,
             store
         };
     };
