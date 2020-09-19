@@ -1,5 +1,6 @@
 import React, { Context, ElementType, PropsWithChildren } from 'react';
 
+// TODO lower case contextType
 const createContext = <T extends object>(ContextType: Context<T>, contextValue: T): ElementType<PropsWithChildren<void>> => {
     const TestContext = (props: PropsWithChildren<void>) => (
         <ContextType.Provider value={ contextValue }>
