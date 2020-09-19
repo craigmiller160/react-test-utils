@@ -1,7 +1,7 @@
 import { act } from 'react-dom/test-utils';
 import { ReactWrapper } from 'enzyme';
 
-const resolveComponent = async (component: ReactWrapper) => {
+const resolveComponent = async (component: ReactWrapper): void => {
     await act(async () => {
         await component;
         await new Promise((resolve) => setImmediate(resolve));
