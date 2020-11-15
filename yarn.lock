@@ -2977,7 +2977,7 @@ core-js-pure@^3.0.0:
   resolved "http://localhost:30000/core-js-pure/-/core-js-pure-3.6.5.tgz#c79e75f5e38dbc85a662d91eea52b8256d53b813"
   integrity sha512-lacdXOimsiD0QyNf9BC/mxivNJ/ybBGJXQFKzRekp1WTHoVUWsUHEn+2T8GJAzzIhyOuXA+gOxCVN3l+5PLPUA==
 
-core-js@^3.7.0:
+core-js@3, core-js@^3.7.0:
   version "3.7.0"
   resolved "http://localhost:30000/core-js/-/core-js-3.7.0.tgz#b0a761a02488577afbf97179e4681bf49568520f"
   integrity sha512-NwS7fI5M5B85EwpWuIwJN4i/fbisQUwLwiSNUWeXlkAZ0sbBjLEvLvFLf1uzAUV66PcEPt4xCGCmOZSxVf3xzA==
@@ -9487,6 +9487,14 @@ tr46@^2.0.2:
   dependencies:
     punycode "^2.1.1"
 
+trace-error@^1.0.3:
+  version "1.0.3"
+  resolved "http://localhost:30000/trace-error/-/trace-error-1.0.3.tgz#66b0b6892950fd478b2a12b9fc0b4cb63c8127e8"
+  integrity sha512-bA+HEtqNhk4dPGYsS3yfguEI4EhS/qojoPZh4Td7Wl6wPINYATPCan6wSwf2Y0IHcTVU6SS8InlX2Fg20g57zw==
+  dependencies:
+    core-js "3"
+    weakmap "0.0.6"
+
 ts-jest@^26.4.3:
   version "26.4.4"
   resolved "http://localhost:30000/ts-jest/-/ts-jest-26.4.4.tgz#61f13fb21ab400853c532270e52cc0ed7e502c49"
@@ -9869,6 +9877,11 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   integrity sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
   dependencies:
     minimalistic-assert "^1.0.0"
+
+weakmap@0.0.6:
+  version "0.0.6"
+  resolved "http://localhost:30000/weakmap/-/weakmap-0.0.6.tgz#0c4fbde02e3b371f9222013fc6632a5c45419b29"
+  integrity sha1-DE+94C47Nx+SIgE/xmMqXEVBmyk=
 
 webidl-conversions@^5.0.0:
   version "5.0.0"
