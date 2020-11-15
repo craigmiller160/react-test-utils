@@ -1,6 +1,7 @@
 {
   "name": "@craigmiller160/react-test-utils",
   "version": "2.0.0-beta",
+  "sideEffects": false,
   "scripts": {
     "lint": "web-config-scripts lint",
     "build": "web-config-scripts buildTSLib"
