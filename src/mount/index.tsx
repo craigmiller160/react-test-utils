@@ -26,11 +26,14 @@ interface InnerArgs<Props extends object, StoreState extends object, ContextValu
 // TODO make Component have lower-case C
 
 // defaultProps and defaultStoreState can have individual properties overridden, defaultInitialRouteEntries gets overridden in its entirety
-const creator = <Props extends object, StoreState extends object, ContextValue extends object>(component: ElementType<Props>, outerArgs?: OuterArgs<Props,StoreState,ContextValue>) => {
-    return (innerArgs?: InnerArgs<Props,StoreState,ContextValue>) => {
-        const actualProps: Partial<Props> = { // TODO is this the right type?
-            ...(outerArgs?.defaultProps ?? {}),
-            ...(innerArgs?.props ?? {})
+const creator = <Props extends object, StoreState extends object, ContextValue extends object>(
+    component: ElementType<Props>,
+    outerArgs: OuterArgs<Props,StoreState,ContextValue>
+) => {
+    return (innerArgs: InnerArgs<Props,StoreState,ContextValue>) => {
+        const actualProps: Props = {
+            ...outerArgs.defaultProps,
+            ...innerArgs.props
         };
 
         let TestProviderWrapper: ElementType<PropsWithChildren<{}>> = (props: PropsWithChildren<{}>) => <div>{ props.children }</div>;
@@ -62,14 +65,15 @@ const creator = <Props extends object, StoreState extends object, ContextValue e
             TestContextWrapper = createContextProvider<Partial<ContextValue>>(outerArgs.contextType as unknown as Context<Partial<ContextValue>>, actualContextValue); // TODO fix this
         }
 
-        const Component: ElementType<Partial<Props>> = component as unknown as ElementType<Partial<Props>>; // TODO fix this
+        const Component: ElementType<Props> = component;
 
-        // TODO fix component part
+        // TODO need to get rid of that ts-ignore
         const mountedComponent = mount(
             <TestProviderWrapper>
                 <TestRouterWrapper>
                     <TestContextWrapper>
-                        {/*<Component { ...actualProps } />*/}
+                        { /* @ts-ignore */ }
+                        <Component/>
                     </TestContextWrapper>
                 </TestRouterWrapper>
             </TestProviderWrapper>
