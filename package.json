@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "lint": "web-config-scripts lint",
-    "build": "web-config-scripts buildTSLib"
+    "build": "web-config-scripts lint && web-config-scripts buildTSLib",
+    "forceBuild": "web-config-scripts buildTSLib"
   },
   "peerDependencies": {
     "enzyme": "^3.11.0",
