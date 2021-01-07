@@ -36,7 +36,7 @@ export type ValuesType = RenderedItemValue | RenderedItemValue[] | null;
  */
 export interface RenderedItem {
     selector: string;
-    values: ValuesType
+    values: ValuesType;
 }
 
 const handleValuesArray = (selector: string, foundItem: ReactWrapper, values: RenderedItemValue[]) => {
@@ -95,16 +95,14 @@ const handleValue = (selector: string, foundItem: ReactWrapper, value: RenderedI
     }
 };
 
-const isValuesArray = (values: ValuesType): values is RenderedItemValue[] => {
-    return values instanceof Array;
-};
+const isValuesArray = (values: ValuesType): values is RenderedItemValue[] => values instanceof Array;
 
 const isValuesObject = (values: ValuesType): values is RenderedItemValue => {
     if (!(values instanceof Array)) {
         return values?.props !== undefined || values?.text !== undefined;
     }
     return false;
-}
+};
 
 const renderingValidator = (wrapper: ReactWrapper, items: Array<RenderedItem>) => {
     items.forEach((item) => {
