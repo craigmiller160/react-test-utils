@@ -24,58 +24,105 @@ export interface RenderedItemValue {
     props?: object;
 }
 
+export type ValuesType = RenderedItemValue | RenderedItemValue[] | null;
+
+/*
+ * Behavior Rules
+ *
+ * 1) If values is array, then it expects multiple values.
+ * 2) If values is array, and is length === 0, then expects not present
+ * 3) If values is object, then it expects one value
+ * 4) If values is null, then it expects not present
+ */
 export interface RenderedItem {
     selector: string;
-    values: Array<RenderedItemValue>;
+    values: ValuesType
+}
+
+const handleValuesArray = (selector: string, foundItem: ReactWrapper, values: RenderedItemValue[]) => {
+    try {
+        expect(foundItem).toHaveLength(values.length);
+    } catch (ex) {
+        const message = `Incorrect number of matches for item: ${selector}`;
+        throw new TraceError(message, ex);
+    }
+
+    if (values.length > 0) {
+        try {
+            expect(foundItem.exists()).toEqual(true);
+        } catch (ex) {
+            const message = `Item should exist but does not: ${selector}`;
+            throw new TraceError(message, ex);
+        }
+    } else {
+        try {
+            expect(foundItem.exists()).toEqual(false);
+        } catch (ex) {
+            const message = `Item should not exist: ${selector}`;
+            throw new TraceError(message, ex);
+        }
+    }
+
+    values.forEach((value, index) => {
+        const foundItemAtIndex = foundItem.at(index);
+        try {
+            handleValue(selector, foundItemAtIndex, value);
+        } catch (ex) {
+            const message = `Invalid item ${selector} at index ${index}`;
+            throw new TraceError(message, ex);
+        }
+    });
+};
+
+const handleValue = (selector: string, foundItem: ReactWrapper, value: RenderedItemValue) => {
+    try {
+        if (value.text) {
+            expect(foundItem.text()).toEqual(value.text);
+        }
+    } catch (ex) {
+        const message = `Invalid item text: ${selector})`;
+        throw new TraceError(message, ex);
+    }
+
+    try {
+        if (value.props) {
+            expect(foundItem.props())
+                .toEqual(expect.objectContaining(value.props));
+        }
+    } catch (ex) {
+        const message = `Invalid item props: ${selector}`;
+        throw new TraceError(message, ex);
+    }
+};
+
+const isValuesArray = (values: ValuesType): values is RenderedItemValue[] => {
+    return values instanceof Array;
+};
+
+const isValuesObject = (values: ValuesType): values is RenderedItemValue => {
+    if (!(values instanceof Array)) {
+        return values?.props !== undefined || values?.text !== undefined;
+    }
+    return false;
 }
 
 const renderingValidator = (wrapper: ReactWrapper, items: Array<RenderedItem>) => {
     items.forEach((item) => {
         const foundItem = wrapper.find(item.selector);
-        if (item.values.length > 0) {
+        if (isValuesArray(item.values)) {
+            handleValuesArray(item.selector, foundItem, item.values);
+        } else if (isValuesObject(item.values)) {
+            handleValue(item.selector, foundItem, item.values);
+        } else if (item.values === null) {
             try {
-                expect(foundItem.exists()).toEqual(true);
-            } catch (ex) {
-                const message = `Item should exist but does not: ${item.selector}`;
-                throw new TraceError(message, ex);
-            }
-        } else {
-            try {
-                expect(foundItem.exists()).toEqual(false);
+                expect(foundItem).toHaveLength(0);
             } catch (ex) {
                 const message = `Item should not exist: ${item.selector}`;
-                throw new TraceError(message, ex);
+                throw new TraceError(message);
             }
+        } else {
+            throw new Error('Invalid values property');
         }
-
-        try {
-            expect(foundItem).toHaveLength(item.values.length);
-        } catch (ex) {
-            const message = `Incorrect number of matches for item: ${item.selector}`;
-            throw new TraceError(message, ex);
-        }
-
-        item.values.forEach((value, index) => {
-            const foundItemAtIndex = foundItem.at(index);
-            try {
-                if (value.text) {
-                    expect(foundItemAtIndex.text()).toEqual(value.text);
-                }
-            } catch (ex) {
-                const message = `Invalid item text: ${item.selector} (${index})`;
-                throw new TraceError(message, ex);
-            }
-
-            try {
-                if (value.props) {
-                    expect(foundItemAtIndex.props())
-                        .toEqual(expect.objectContaining(value.props));
-                }
-            } catch (ex) {
-                const message = `Invalid item props: ${item.selector} (${index})`;
-                throw new TraceError(message, ex);
-            }
-        });
     });
 };
 

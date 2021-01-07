@@ -20,5 +20,5 @@ export { default as createTestComponent } from './create/createTestComponent';
 export { default as createTestReduxProvider } from './create/createTestReduxProvider';
 export { default as createTestRouter } from './create/createTestRouter';
 export { default as renderingValidator } from './validate/renderingValidator';
-export type { RenderedItem, RenderedItemValue } from './validate/renderingValidator';
+export type { RenderedItem, RenderedItemValue, ValuesType } from './validate/renderingValidator';
 export type { RouterOptions } from './create/createTestRouter';
