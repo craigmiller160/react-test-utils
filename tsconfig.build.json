@@ -21,8 +21,7 @@
     "module": "es2015"
   },
   "include": [
-    "/home/craig/Development/Libraries/react-test-utils/src/**/*",
-    "/home/craig/Development/Libraries/react-test-utils/test/**/*"
+    "/home/craig/Development/Libraries/react-test-utils/src/**/*"
   ],
   "exclude": [
     "/home/craig/Development/Libraries/react-test-utils/node_modules",
