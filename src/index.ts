@@ -22,3 +22,4 @@ export { default as createTestRouter } from './create/createTestRouter';
 export { default as renderingValidator } from './validate/renderingValidator';
 export type { RenderedItem, RenderedItemValue, ValuesType } from './validate/renderingValidator';
 export type { RouterOptions } from './create/createTestRouter';
+export { default as enzymeAsyncMount } from './mount/enzymeAsyncMount';
