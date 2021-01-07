@@ -39,6 +39,27 @@ export interface RenderedItem {
     values: ValuesType;
 }
 
+const handleValue = (selector: string, foundItem: ReactWrapper, value: RenderedItemValue) => {
+    try {
+        if (value.text) {
+            expect(foundItem.text()).toEqual(value.text);
+        }
+    } catch (ex) {
+        const message = `Invalid item text: ${selector})`;
+        throw new TraceError(message, ex);
+    }
+
+    try {
+        if (value.props) {
+            expect(foundItem.props())
+                .toEqual(expect.objectContaining(value.props));
+        }
+    } catch (ex) {
+        const message = `Invalid item props: ${selector}`;
+        throw new TraceError(message, ex);
+    }
+};
+
 const handleValuesArray = (selector: string, foundItem: ReactWrapper, values: RenderedItemValue[]) => {
     try {
         expect(foundItem).toHaveLength(values.length);
@@ -72,27 +93,6 @@ const handleValuesArray = (selector: string, foundItem: ReactWrapper, values: Re
             throw new TraceError(message, ex);
         }
     });
-};
-
-const handleValue = (selector: string, foundItem: ReactWrapper, value: RenderedItemValue) => {
-    try {
-        if (value.text) {
-            expect(foundItem.text()).toEqual(value.text);
-        }
-    } catch (ex) {
-        const message = `Invalid item text: ${selector})`;
-        throw new TraceError(message, ex);
-    }
-
-    try {
-        if (value.props) {
-            expect(foundItem.props())
-                .toEqual(expect.objectContaining(value.props));
-        }
-    } catch (ex) {
-        const message = `Invalid item props: ${selector}`;
-        throw new TraceError(message, ex);
-    }
 };
 
 const isValuesArray = (values: ValuesType): values is RenderedItemValue[] => values instanceof Array;

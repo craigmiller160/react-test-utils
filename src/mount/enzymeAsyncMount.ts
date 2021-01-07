@@ -16,10 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { ReactElement } from 'react';
-import { mount } from 'enzyme';
+import { ReactElement } from 'react';
+import { mount, ReactWrapper } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import { ReactWrapper } from 'enzyme';
 
 const enzymeAsyncMount = async (node: ReactElement<any>): Promise<ReactWrapper> => {
     let component: any;
