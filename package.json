@@ -1,8 +1,12 @@
 {
   "name": "@craigmiller160/react-test-utils",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "sideEffects": false,
   "main": "lib/index.js",
+  "publishConfig": {
+    "registry": "http://craigpc:30003/repository/npm-private/"
+  },
+  "author": "craigmiller160",
   "files": [
     "lib"
   ],
@@ -20,7 +24,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@craigmiller160/react-web-config": "^2.7.0",
+    "@craigmiller160/react-web-config": "^2.8.1",
     "@types/react": "^16.9.56",
     "@types/react-dom": "^16.9.10",
     "@types/react-redux": "^7.1.11",
