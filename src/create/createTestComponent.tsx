@@ -28,6 +28,7 @@ const createTestComponent = <Props extends object>(defaultProps: Props, componen
         const Component: ComponentType<Props> = component;
 
         return (
+            // @ts-ignore
             <Component { ...actualProps } />
         );
     };
