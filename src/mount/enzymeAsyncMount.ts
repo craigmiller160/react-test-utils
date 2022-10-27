@@ -23,6 +23,7 @@ import { act } from 'react-dom/test-utils';
 const enzymeAsyncMount = async (node: ReactElement<any>): Promise<ReactWrapper> => {
     let component: any;
     await act(async () => {
+        // @ts-ignore
         component = await mount(node);
     });
     const wrapper: ReactWrapper = component as ReactWrapper;

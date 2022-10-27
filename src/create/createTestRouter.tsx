@@ -38,6 +38,7 @@ const createTestRouter = (defaultOptions: RouterOptions) => (props: Partial<Prop
             initialEntries={ actualOptions.initialEntries }
             initialIndex={ actualOptions.initialIndex }
         >
+            { /* @ts-ignore */ }
             { children }
         </MemoryRouter>
     );

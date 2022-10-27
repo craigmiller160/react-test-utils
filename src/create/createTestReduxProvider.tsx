@@ -41,6 +41,7 @@ const createTestReduxProvider = <State extends object>(defaultState: State):
 
         return (
             <Provider store={ store }>
+                { /* @ts-ignore */ }
                 { stateProps.children }
             </Provider>
         );
