@@ -46,7 +46,7 @@ const handleValue = (selector: string, foundItem: ReactWrapper, value: RenderedI
         }
     } catch (ex) {
         const message = `Invalid item text: ${selector})`;
-        throw new TraceError(message, ex);
+        throw new TraceError(message, ex as Error);
     }
 
     try {
@@ -56,7 +56,7 @@ const handleValue = (selector: string, foundItem: ReactWrapper, value: RenderedI
         }
     } catch (ex) {
         const message = `Invalid item props: ${selector}`;
-        throw new TraceError(message, ex);
+        throw new TraceError(message, ex as Error);
     }
 };
 
@@ -65,7 +65,7 @@ const handleValuesArray = (selector: string, foundItem: ReactWrapper, values: Re
         expect(foundItem).toHaveLength(values.length);
     } catch (ex) {
         const message = `Incorrect number of matches for item: ${selector}`;
-        throw new TraceError(message, ex);
+        throw new TraceError(message, ex as Error);
     }
 
     if (values.length > 0) {
@@ -73,14 +73,14 @@ const handleValuesArray = (selector: string, foundItem: ReactWrapper, values: Re
             expect(foundItem.exists()).toEqual(true);
         } catch (ex) {
             const message = `Item should exist but does not: ${selector}`;
-            throw new TraceError(message, ex);
+            throw new TraceError(message, ex as Error);
         }
     } else {
         try {
             expect(foundItem.exists()).toEqual(false);
         } catch (ex) {
             const message = `Item should not exist: ${selector}`;
-            throw new TraceError(message, ex);
+            throw new TraceError(message, ex as Error);
         }
     }
 
@@ -90,7 +90,7 @@ const handleValuesArray = (selector: string, foundItem: ReactWrapper, values: Re
             handleValue(selector, foundItemAtIndex, value);
         } catch (ex) {
             const message = `Invalid item ${selector} at index ${index}`;
-            throw new TraceError(message, ex);
+            throw new TraceError(message, ex as Error);
         }
     });
 };
