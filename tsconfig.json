@@ -21,13 +21,13 @@
     "module": "es2015"
   },
   "include": [
-    "/home/craig/Development/Libraries/react-test-utils/src/**/*",
-    "/home/craig/Development/Libraries/react-test-utils/test/**/*"
+    "/Users/craigmiller/Development/Libraries/react-test-utils/src/**/*",
+    "/Users/craigmiller/Development/Libraries/react-test-utils/test/**/*"
   ],
   "exclude": [
-    "/home/craig/Development/Libraries/react-test-utils/node_modules",
-    "/home/craig/Development/Libraries/react-test-utils/lib",
-    "/home/craig/Development/Libraries/react-test-utils/build",
-    "/home/craig/Development/Libraries/react-test-utils/.yalc"
+    "/Users/craigmiller/Development/Libraries/react-test-utils/node_modules",
+    "/Users/craigmiller/Development/Libraries/react-test-utils/lib",
+    "/Users/craigmiller/Development/Libraries/react-test-utils/build",
+    "/Users/craigmiller/Development/Libraries/react-test-utils/.yalc"
   ]
 }

@@ -19,15 +19,15 @@
     "jsx": "react",
     "declaration": true,
     "module": "es2015",
-    "outDir": "/home/craig/Development/Libraries/react-test-utils/lib"
+    "outDir": "/Users/craigmiller/Development/Libraries/react-test-utils/lib"
   },
   "include": [
-    "/home/craig/Development/Libraries/react-test-utils/src/**/*"
+    "/Users/craigmiller/Development/Libraries/react-test-utils/src/**/*"
   ],
   "exclude": [
-    "/home/craig/Development/Libraries/react-test-utils/node_modules",
-    "/home/craig/Development/Libraries/react-test-utils/lib",
-    "/home/craig/Development/Libraries/react-test-utils/build",
-    "/home/craig/Development/Libraries/react-test-utils/.yalc"
+    "/Users/craigmiller/Development/Libraries/react-test-utils/node_modules",
+    "/Users/craigmiller/Development/Libraries/react-test-utils/lib",
+    "/Users/craigmiller/Development/Libraries/react-test-utils/build",
+    "/Users/craigmiller/Development/Libraries/react-test-utils/.yalc"
   ]
 }
